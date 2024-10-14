@@ -1,0 +1,4 @@
+@baseUrl = http://localhost:3000
+
+### Read all texts
+GET {{baseUrl}}/texts

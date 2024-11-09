@@ -1,58 +1,78 @@
 import './App.css'
 
+
 const App = () => {
   const pageTitle = "Informations sur les films dans les cinémas";
 
   const cinema1Name = "UGC DeBrouckère";
-  const cinema1Movie1Title = "Film 1 - DeBrouckère";
-  const cinema1Movie1Director = "Director A";
-  const cinema1Movie2Title = "Film 2 - DeBrouckère";
-  const cinema1Movie2Director = "Director B";
+
+  const movie1 : Movie = {
+    title: "HAIKYU-THE DUMPSTER BATTLE",
+    director: "Susumu Mitsunaka",
+  };
+
+  const movie2 : Movie = {
+    title: "GOODBYE JULIA ",
+    director: "Mohamed Kordofani",
+  };
 
   const cinema2Name = "UGC Toison d'Or";
-  const cinema2Movie1Title = "Film 1 - Toison d'Or";
-  const cinema2Movie1Director = "Director C";
-  const cinema2Movie2Title = "Film 2 - Toison d'Or";
-  const cinema2Movie2Director = "Director D";
+
+  const movie3 : Movie = {
+    title: "THE WATCHERS",
+    director: "Ishana Night Shyamalan",
+  };
+
+  const movie4 : Movie = {
+    title: "BAD BOYS: RIDE OR DIE",
+    director: "Adil El Arbi, Bilall Fallah",
+  };
 
   return (
     <div>
       <PageTitle title={pageTitle} />
 
-      <Cinema name={cinema1Name} 
-              movie1Name={cinema1Movie1Title} 
-              movie1Director={cinema1Movie1Director} 
-              movie2Name={cinema1Movie2Title} 
-              movie2Director={cinema1Movie2Director} />
+      <Cinema name={cinema1Name} movie1={movie1} movie2={movie2} />
 
-      <Cinema name={cinema2Name}
-              movie1Name={cinema2Movie1Title} 
-              movie1Director={cinema2Movie1Director} 
-              movie2Name={cinema2Movie2Title} 
-              movie2Director={cinema2Movie2Director} />
+      <Cinema name={cinema2Name} movie1={movie3} movie2={movie4} />
     </div>
   );
 };
 
-const PageTitle = (props: { title: string }) => {
+interface Movie {
+  title: string;
+  director: string;
+}
+
+interface CinemaProps {
+  name: string;
+  movie1: Movie;
+  movie2: Movie;
+}
+
+interface PageTitle {
+  title: string;
+}
+
+
+
+const PageTitle = (props: PageTitle) => {
   return <h1>{props.title}</h1>;
 }
 
 
-const Cinema = (props: { name: string, movie1Name : string, movie1Director : string
-                         movie2Name : string, movie2Director : string
- }) => {
+const Cinema = (props: CinemaProps) => {
   return (
     <div>
       <h2>{props.name}</h2>
       <ul>
         <li>
-          <strong>{props.movie1Name}</strong> - Réalisateur :{" "}
-          {props.movie1Director}
+          <strong>{props.movie1.title}</strong> - Réalisateur :{" "}
+          {props.movie1.director}
         </li>
         <li>
-          <strong>{props.movie2Name}</strong> - Réalisateur :{" "}
-          {props.movie2Director}
+          <strong>{props.movie2.title}</strong> - Réalisateur :{" "}
+          {props.movie2.director}
         </li>
       </ul>
     </div>

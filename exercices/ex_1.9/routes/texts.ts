@@ -7,11 +7,8 @@ const router = Router();
 const expectedLevels = ["easy", "medium", "hard"];
 
 router.get("/", (req, res) => {
-    const level =
-    "level" in req.query && typeof req.query["level"] === "string"
-      ? req.query["level"]
-      : undefined;
-
+    //const level = "level" in req.query && typeof req.query["level"] === "string" ? req.query["level"]: undefined;
+  const level = req.query.level && typeof req.query.level === "string" ? req.query.level : undefined;
   if (level !== undefined && !expectedLevels.includes(level)) {
     return res.sendStatus(400);
   }
